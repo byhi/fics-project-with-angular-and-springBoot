@@ -28,7 +28,7 @@ public class RendszerController {
 		this.rendszerService = rendszerService;
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/")
 	public Collection<Rendszer> getAllRendszer() {		
 		return rendszerService.findAll().stream().collect(Collectors.toList());
 	}
