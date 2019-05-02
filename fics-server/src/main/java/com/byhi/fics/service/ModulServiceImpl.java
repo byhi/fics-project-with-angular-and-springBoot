@@ -14,6 +14,7 @@ import com.byhi.fics.repository.ModulRepository;
 public class ModulServiceImpl implements ModulService {
 
 	private ModulRepository modulRepository;
+	
 	@Autowired
     public void getModulRepository(ModulRepository modulRepository) {
         this.modulRepository = modulRepository;
@@ -24,8 +25,9 @@ public class ModulServiceImpl implements ModulService {
 		        .collect(Collectors.toList());
 	}
 
-	public void addModul(Modul rendszer) {
-		this.modulRepository.save(rendszer);
+	public void addModul(Modul modul, Rendszer rendszer) {
+		modul.setR_id(rendszer);
+		this.modulRepository.save(modul);
 		
 	}
 
@@ -36,6 +38,20 @@ public class ModulServiceImpl implements ModulService {
 	public void updateModul(Modul modul) {
 		this.modulRepository.save(modul);		
 	}
-	
 
+	public Modul findById(Long r_id) {
+		return this.modulRepository.findById(r_id).get();		
+	}
+
+	public void updateModul(Modul modul, Rendszer rendszer) {
+		Modul m = this.modulRepository.findById(modul.getId()).get();
+		if (rendszer.getId().equals(m.getR_id().getId())) {
+			m.setName(modul.getName());
+			m.setDesc(modul.getDesc());
+			this.modulRepository.save(m);		
+		} else {
+			modul.setR_id(rendszer);
+			this.modulRepository.save(modul);	
+		}
+	}
 }

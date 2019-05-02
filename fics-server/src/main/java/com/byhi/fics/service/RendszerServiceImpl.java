@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.byhi.fics.domain.Rendszer;
 import com.byhi.fics.repository.RendszerRepository;
 
@@ -43,4 +42,5 @@ public class RendszerServiceImpl implements RendszerService {
 	public Rendszer findById(Long id) {
 		return repository.findById(id).get();
 	}
+	
 }
