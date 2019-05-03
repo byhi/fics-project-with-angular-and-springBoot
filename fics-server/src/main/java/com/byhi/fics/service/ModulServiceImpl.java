@@ -44,7 +44,9 @@ public class ModulServiceImpl implements ModulService {
 	}
 
 	public void updateModul(Modul modul, Rendszer rendszer) {
+		
 		Modul m = this.modulRepository.findById(modul.getId()).get();
+		
 		if (rendszer.getId().equals(m.getR_id().getId())) {
 			m.setName(modul.getName());
 			m.setDesc(modul.getDesc());
